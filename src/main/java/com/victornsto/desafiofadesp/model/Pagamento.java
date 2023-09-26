@@ -17,7 +17,7 @@ public class Pagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "cod_debito")
-    private int codDebito;
+    private Integer codDebito;
     @Column(name = "cpf_cnpj")
     private String cpfCnpj;
     @ManyToOne

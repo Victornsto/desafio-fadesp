@@ -17,43 +17,12 @@ import java.util.List;
 @NoArgsConstructor
 public class PagamentoDto implements Serializable {
     private Long id;
-    private int codDebito;
+    private Integer codDebito;
     private String cpfCnpj;
     private Long idMetodoPagamento;
     private String numCartao;
     private BigDecimal valorPagamento;
     private StatusPagamento status;
-
-    public Pagamento convertToModel() {
-        return convertToModel(new Pagamento());
-    }
-
-    public boolean validarCpfCnpf() {
-        this.setCpfCnpj(this.getCpfCnpj().replace("-","").replace(".", "").replace("/",""));
-        return this.cpfCnpj.length() == 11 || this.cpfCnpj.length() == 14;
-    }
-
-    public boolean validarCartao() {
-        this.setNumCartao(this.getNumCartao().replace(" ",""));
-        return this.numCartao.length() == 16;
-    }
-
-    public Pagamento convertToModel(Pagamento pagamento){
-        pagamento.setId(this.getId());
-        pagamento.setCodDebito(this.getCodDebito());
-        pagamento.setCpfCnpj(this.getCpfCnpj());
-       // pagamento.setm(this.getMetodoPagamento());
-        pagamento.setNumCartao(this.getNumCartao());
-        pagamento.setValorPagamento(this.getValorPagamento());
-        pagamento.setStatus(this.getStatus());
-        return pagamento;
-    }
-
-    public Pagamento convertToModel(MetodoPagamento metodoPagamento) {
-        Pagamento pagamento = new Pagamento();
-        pagamento.setMetodoPagamento(metodoPagamento);
-        return pagamento;
-    }
 
     public List<PagamentoDto> convertListToDto(List<Pagamento> pagamentos) {
         List<PagamentoDto> pagamentoDTOs = new ArrayList<>();
